@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/main.css";
-
-function Todo({ todo, onDeleteHanlder, onEditHandler }) {
+//삭제버튼 만들기
+function Todo({ todo, onRemoveHanlder, onCompleteHandler }) {
   return (
     <div className="todo-container">
       <div>
@@ -11,13 +11,13 @@ function Todo({ todo, onDeleteHanlder, onEditHandler }) {
       <div className="button-set">
         <button
           className="todo-delete-button button"
-          onClick={() => onDeleteHanlder(todo.id)}
+          onClick={() => onRemoveHanlder(todo.id)}
         >
-          삭제하기
+          삭제
         </button>
         <button
           className="todo-complete-button button"
-          onClick={() => onEditHandler(todo.id)}
+          onClick={() => onCompleteHandler(todo.id)}
         >
           {todo.isDone ? "취소" : "완료"}
         </button>

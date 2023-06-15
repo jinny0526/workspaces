@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../css/main.css";
+//입력 양식 전부를 감싸는 것
 
-let number = 3;
-function Form({ setTodos, todos }) {
+function Form({ todos }) {
   const initialState = {
     id: 0,
     title: "",
@@ -17,17 +17,9 @@ function Form({ setTodos, todos }) {
     const { name, value } = event.target;
     setTodo({ ...todo, [name]: value });
   }
-  //trim 입력이 되지않았을 때 입력을 방지
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    if (todo.title.trim() === "" || todo.body.trim() === "") return;
-    setTodos([...todos, { ...todo, id: number }]);
-    setTodo(initialState);
-    number++;
-  };
-
   return (
-    <form onSubmit={onSubmitHandler} className="add-form">
+    <div className="add-form">
+      y
       <div className="input-group">
         <label className="form-label">제목</label>
         <input
@@ -37,6 +29,7 @@ function Form({ setTodos, todos }) {
           className="add-input input-body"
           onChange={onChangeHandler}
         />
+
         <label className="form-label">내용</label>
         <input
           type="text"
@@ -47,7 +40,8 @@ function Form({ setTodos, todos }) {
         />
       </div>
       <button className="add-button">추가하기</button>
-    </form>
+      추가하기
+    </div>
   );
 }
 

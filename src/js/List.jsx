@@ -2,8 +2,9 @@ import React from "react";
 import Todo from "./Todo";
 import "../css/main.css";
 
+//삭제버튼 만들기
 function List({ todos, setTodos }) {
-  const onDeleteHanlder = (todoId) => {
+  const onRemoveHanlder = (todoId) => {
     const newTodos = todos.filter((todo) => {
       return todo.id !== todoId;
     });
@@ -11,7 +12,8 @@ function List({ todos, setTodos }) {
     setTodos(newTodos);
   };
 
-  const onEditHandler = (todoId) => {
+  //편집버튼 만들기
+  const onCompleteHandler = (todoId) => {
     const newTodos = todos.map((todo) => {
       if (todo.id === todoId) {
         return {
@@ -35,10 +37,10 @@ function List({ todos, setTodos }) {
             return (
               <Todo
                 todo={todo}
-                key={todo.id}
                 setTodos={setTodos}
-                onDeleteHanlder={onDeleteHanlder}
-                onEditHandler={onEditHandler}
+                key={todo.id}
+                onRemoveHanlder={onRemoveHanlder}
+                onCompleteHandler={onCompleteHandler}
               />
             );
           } else {
@@ -53,10 +55,10 @@ function List({ todos, setTodos }) {
             return (
               <Todo
                 todo={todo}
-                key={todo.id}
                 setTodos={setTodos}
-                onDeleteHanlder={onDeleteHanlder}
-                onEditHandler={onEditHandler}
+                key={todo.id}
+                onRemoveHanlder={onRemoveHanlder}
+                onCompleteHandler={onCompleteHandler}
               />
             );
           } else {
