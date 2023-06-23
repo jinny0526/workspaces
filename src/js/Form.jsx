@@ -1,64 +1,101 @@
 import React, { useState } from "react";
-import "../css/main.css";
-//입력 양식 전부를 감싸는 것
-let number = 0;
-function Form({ todos, setTodos }) {
-  const initialState = {
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import nextId from "react-id-generator";
+import { addTodo } from "../../../redux/modules/todos.js";
+
+const Form = () => {
+  const id = nextId();
+
+  const dispatch = useDispatch();
+  const [todo, setTodo] = useState({
     id: 0,
     title: "",
     body: "",
     isDone: false,
+  });
+
+  // const todos = useSelector((state) => state.todos.todos);
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setTodo({ ...todo, [name]: value });
   };
 
-  console.log(todos);
-
-  const [todo, setTodo] = useState(initialState);
-  function onChangeHandler(event) {
-    const { name, value } = event.target;
-    setTodo({
-      ...todo,
-      [name]: value,
-    });
-  }
-
-  //trim 공백값 지워주기 조건을 걸고 사용
   const onSubmitHandler = (event) => {
     event.preventDefault();
     if (todo.title.trim() === "" || todo.body.trim() === "") return;
-    setTodos([...todos, { ...todo, id: number }]);
-    number++;
+
+    dispatch(addTodo({ ...todo, id }));
+    setTodo({
+      id: 0,
+      title: "",
+      body: "",
+      isDone: false,
+    });
   };
 
-  //return 중지 아래의 코드가 실행이 안됨
-  //... 기존의 데이터를 전부 넣는다.
-  //consloe.log로 확인하기
-  // setTodo(initialState); 없을때랑 있을 때 비교해봤는데 아무 문제 없어보여서 일단은 뺌
   return (
-    <form onSubmit={onSubmitHandler} className="add-form">
-      <div className="add-form">
-        <div className="input-group">
-          <label className="form-label">제목</label>
-          <input
-            type="text"
-            name="title"
-            value={todo.title}
-            className="add-input input-body"
-            onChange={onChangeHandler}
-          />
-
-          <label className="form-label">내용</label>
-          <input
-            type="text"
-            name="body"
-            value={todo.body}
-            className="add-input"
-            onChange={onChangeHandler}
-          />
-        </div>
-        <button className="add-button">추가하기</button>
-      </div>
-    </form>
+    <StAddForm onSubmit={onSubmitHandler}>
+      <StInputGroup>
+        <StFormLabel>제목</StFormLabel>
+        <StAddInput
+          type="text"
+          name="title"
+          value={todo.title}
+          onChange={onChangeHandler}
+        />
+        <StFormLabel>내용</StFormLabel>
+        <StAddInput
+          type="text"
+          name="body"
+          value={todo.body}
+          onChange={onChangeHandler}
+        />
+      </StInputGroup>
+      <StAddButton>추가하기</StAddButton>
+    </StAddForm>
   );
-}
+};
 
 export default Form;
+
+const StInputGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+
+const StFormLabel = styled.label`
+  font-size: 16px;
+  font-weight: 700;
+`;
+
+const StAddForm = styled.form`
+  background-color: #eee;
+  border-radius: 12px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+  gap: 20px;
+`;
+
+const StAddInput = styled.input`
+  height: 40px;
+  width: 240px;
+  border: none;
+  border-radius: 12px;
+  padding: 0 12px;
+`;
+
+const StAddButton = styled.button`
+  border: none;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: teal;
+  width: 140px;
+  color: #fff;
+  font-weight: 700;
+`;

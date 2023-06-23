@@ -29,5 +29,6 @@ const TodoList = () => {
     </Layout>
   );
 };
-
+//usestate : 다음 컴퍼넌트로 전달 , 리덕스 전달할 필요없이 그냥 사용간으
+//
 export default TodoList;
