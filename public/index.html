@@ -28,6 +28,7 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+<<<<<<< HEAD
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -39,5 +40,57 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+=======
+    <div id="root">
+      <div class="layout">
+        <div class="container">
+          <div>My Todo List</div>
+          <div>React</div>
+        </div>
+        <form class="add-form">
+          <div class="input-group">
+            <label class="form-label">제목</label
+            ><input
+              type="text"
+              name="title"
+              class="add-input input-body"
+              value=""
+            /><label class="form-label">내용</label
+            ><input type="text" name="body" class="add-input" value="" />
+          </div>
+          <button class="add-button">추가하기</button>
+        </form>
+        <div class="list-container">
+          <h2 class="list-title">Working.. ⏰</h2>
+          <div class="list-wrapper">
+            <div class="todo-container">
+              <div>
+                <h2 class="todo-title">리액트 공부하기</h2>
+                <a class="todo-page" href="/1"><div>상세보기</div></a>
+                <div>리액트 기초를 공부해봅시다.</div>
+              </div>
+              <div class="button-set">
+                <button class="todo-delete-button button">삭제하기</button
+                ><button class="todo-complete-button button">완료</button>
+              </div>
+            </div>
+          </div>
+          <h2 class="list-title">Done..! ⚡</h2>
+          <div class="list-wrapper">
+            <div class="todo-container">
+              <div>
+                <h2 class="todo-title">리액트 공부하기</h2>
+                <div>리액트 기초를 공부해봅시다.</div>
+              </div>
+              <div class="button-set">
+                <button class="todo-delete-button button">삭제하기</button
+                ><button class="todo-complete-button button">취소</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+>>>>>>> 2c5a407f20cf39c2c92c4925a5f5d2ebba416d64
   </body>
 </html>
